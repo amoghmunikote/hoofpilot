@@ -20,10 +20,25 @@ jobs:
       run: |
         TOKEN_USERNAME=$(gh api user -H "Authorization: token $GITHUB_TOKEN" --jq '.login')
 
-        if [[ "${{ github.actor }}" == "FrogAi" ]]; then
-          echo "PR opened or reopened by FrogAi. No action needed."
+        if [[ "${{ github.actor }}" == "amoghmunikote" ]]; then
+          echo "PR opened or reopened by amoghmunikote. No action needed."
           exit 0
         fi
+
+        if [[ "${{ github.actor }}" == "MoreTore" ]]; then
+            echo "PR opened or reopened by MoreTore. No action needed."
+            exit 0
+          fi
+
+        if [[ "${{ github.actor }}" == "andiradulescu" ]]; then
+            echo "PR opened or reopened by andiradulescu. No action needed."
+            exit 0
+          fi
+        
+        if [[ "${{ github.actor }}" == "dzid26" ]]; then
+            echo "PR opened or reopened by dzid26. No action needed."
+            exit 0
+          fi
 
         if [[ "${{ github.base_ref }}" != "MAKE-PRS-HERE" ]]; then
           git config --global user.name "${{ github.actor }}"
@@ -40,5 +55,5 @@ jobs:
         else
           gh api repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/comments \
             -H "Authorization: token $GITHUB_TOKEN" \
-            -f body="Thank you for your PR! If you're not already in the FrogPilot Discord, [feel free to join](https://discord.FrogPilot.download) and let me know you've opened a PR!"
+            -f body="Thank you for your PR! Your PR will be reviewed within a couple of days by the hoofpilot team."
         fi
